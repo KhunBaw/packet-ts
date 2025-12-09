@@ -12,8 +12,54 @@ TypeScript library สำหรับสร้างและอ่าน binary
 
 ## Installation
 
+### From npm (when published)
 ```bash
 npm install packet-ts
+```
+
+### From GitHub (Current)
+```bash
+# Install directly from GitHub repository
+npm install git+https://github.com/KhunBaw/packet-ts.git
+
+# Or install specific branch
+npm install git+https://github.com/KhunBaw/packet-ts.git#main
+
+# Or install specific commit/tag
+npm install git+https://github.com/KhunBaw/packet-ts.git#v1.0.0
+```
+
+### Using package.json
+Add to your `package.json` dependencies:
+```json
+{
+  "dependencies": {
+    "packet-ts": "git+https://github.com/KhunBaw/packet-ts.git"
+  }
+}
+```
+
+Then run:
+```bash
+npm install
+```
+
+### Local Development
+Clone and link locally for development:
+```bash
+# Clone repository
+git clone https://github.com/KhunBaw/packet-ts.git
+cd packet-ts
+
+# Install dependencies and build
+npm install
+npm run build
+
+# Link globally
+npm link
+
+# In your project directory
+npm link packet-ts
 ```
 
 ## Quick Start
