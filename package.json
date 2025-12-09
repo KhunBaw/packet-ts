@@ -1,0 +1,30 @@
+{
+  "name": "packet-ts",
+  "version": "1.0.0",
+  "description": "TypeScript library for creating and reading binary packets for client-server communication",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "packet",
+    "binary",
+    "protocol",
+    "websocket",
+    "network",
+    "game"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.10.2",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}
