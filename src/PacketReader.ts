@@ -7,7 +7,8 @@ export class PacketReader {
     private offset: number = 0;
 
     constructor(data: Uint8Array | ArrayBuffer) {
-        this.data = data instanceof Uint8Array ? data : new Uint8Array(data);
+        const rawData = data instanceof ArrayBuffer ? data.slice(2) : data.buffer.slice(2);
+        this.data = rawData instanceof Uint8Array ? rawData : new Uint8Array(rawData);
     }
 
     /**
@@ -135,6 +136,25 @@ export class PacketReader {
 
         const bytes = this.data.slice(this.offset, this.offset + length);
         this.offset += length;
+
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    /**
+     * Read null-terminated string (reads until null byte 0x00)
+     */
+    readStringNullTerminated(): string {
+        const start = this.offset;
+        while (this.offset < this.data.length && this.data[this.offset] !== 0) {
+            this.offset++;
+        }
+
+        if (this.offset >= this.data.length) {
+            throw new Error('PacketReader: String not null-terminated');
+        }
+
+        const bytes = this.data.slice(start, this.offset);
+        this.offset++; // Skip the null terminator
 
         return new TextDecoder('utf-8').decode(bytes);
     }

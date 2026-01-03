@@ -108,6 +108,15 @@ export class PacketWriter {
     }
 
     /**
+     * Write null-terminated string (UTF-8 bytes + null byte 0x00)
+     */
+    writeStringNullTerminated(value: string): void {
+        const utf8Bytes = new TextEncoder().encode(value);
+        this.buffer.push(...utf8Bytes);
+        this.buffer.push(0x00);  // null terminator
+    }
+
+    /**
      * Write raw bytes (no length prefix)
      */
     writeBytes(bytes: Uint8Array): void {
